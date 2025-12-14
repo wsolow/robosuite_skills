@@ -71,13 +71,13 @@ class Experiment(object):
         :param criteria: A dictionary from key to value that must be matches
         in the trial's variant. e.g.
         ```
-        >>> print(exp.trials)
+        >>> pr(exp.trials)
         [
             (X, {'a': True, ...})
             (Y, {'a': False, ...})
             (Z, {'a': True, ...})
         ]
-        >>> print(exp.get_trials({'a': True}))
+        >>> pr(exp.get_trials({'a': True}))
         [
             (X, {'a': True, ...})
             (Z, {'a': True, ...})
@@ -147,7 +147,7 @@ def get_trials(base_dir, verbose=False, criteria=None, excluded_seeds=()):
         num_lines = sum(1 for _ in open(data_file_name))
         if num_lines < 2:
             continue
-        # print(delimiter)
+        # pr(delimiter)
         data = np.genfromtxt(
             data_file_name,
             delimiter=delimiter,

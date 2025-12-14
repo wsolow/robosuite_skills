@@ -324,18 +324,6 @@ class IntIdDict(collections.defaultdict):
     Usage:
     ```
     id_map = IntIdDict()
-    print(id_map['a'])
-    print(id_map['b'])
-    print(id_map['c'])
-    print(id_map['a'])
-    print(id_map['b'])
-    print(id_map['a'])
-
-    print('')
-
-    print(id_map.get_inverse(0))
-    print(id_map.get_inverse(1))
-    print(id_map.get_inverse(2))
     ```
 
     Output:

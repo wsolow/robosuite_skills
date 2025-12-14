@@ -21,7 +21,7 @@ A repository based on the paper and code found here: https://github.com/UT-Austi
     ```pip install -e maple```
 
     c. Install other requirements
-    ```pip install python-dateutil torch torchvision gtimer```
+    ```pip install python-dateutil torch torchvision gtimer scikit-video imageio imageio[ffmpeg] matplotlib```
 
 ### Usage
 See https://github.com/UT-Austin-RPL/maple for instructions on how to run experiments

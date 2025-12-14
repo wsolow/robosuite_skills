@@ -201,6 +201,7 @@ class Wipe(ManipulationEnv):
         renderer="mjviewer",
         renderer_config=None,
         seed=None,
+        skill_config=None
     ):
         # Assert that the gripper type is None
         assert (
@@ -299,6 +300,7 @@ class Wipe(ManipulationEnv):
             renderer=renderer,
             renderer_config=renderer_config,
             seed=seed,
+            skill_config=skill_config
         )
 
         # set after init to ensure self.robots is set

@@ -212,6 +212,7 @@ class PickPlace(ManipulationEnv):
         renderer="mjviewer",
         renderer_config=None,
         seed=None,
+        skill_config=None
     ):
         # task settings
         self.single_object_mode = single_object_mode
@@ -269,6 +270,7 @@ class PickPlace(ManipulationEnv):
             renderer=renderer,
             renderer_config=renderer_config,
             seed=seed,
+            skill_config=None
         )
 
     def reward(self, action=None):

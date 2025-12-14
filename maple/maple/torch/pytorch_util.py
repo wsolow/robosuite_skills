@@ -187,22 +187,22 @@ def compute_conv_layer_sizes(h_in, w_in, kernel_sizes, strides, paddings=None):
     if paddings == None:
         for kernel, stride in zip(kernel_sizes, strides):
             h_in, w_in = compute_conv_output_size(h_in, w_in, kernel, stride)
-            print("Output Size:", (h_in, w_in))
+            #pr("Output Size:", (h_in, w_in))
     else:
         for kernel, stride, padding in zip(kernel_sizes, strides, paddings):
             h_in, w_in = compute_conv_output_size(h_in, w_in, kernel, stride, padding=padding)
-            print("Output Size:", (h_in, w_in))
+            #pr("Output Size:", (h_in, w_in))
 
 
 def compute_deconv_layer_sizes(h_in, w_in, kernel_sizes, strides, paddings=None):
     if paddings == None:
         for kernel, stride in zip(kernel_sizes, strides):
             h_in, w_in = compute_deconv_output_size(h_in, w_in, kernel, stride)
-            print("Output Size:", (h_in, w_in))
+            #pr("Output Size:", (h_in, w_in))
     else:
         for kernel, stride, padding in zip(kernel_sizes, strides, paddings):
             h_in, w_in = compute_deconv_output_size(h_in, w_in, kernel, stride, padding=padding)
-            print("Output Size:", (h_in, w_in))
+            #pr("Output Size:", (h_in, w_in))
 
 
 """

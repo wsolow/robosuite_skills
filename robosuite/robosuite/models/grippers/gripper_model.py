@@ -26,7 +26,7 @@ class GripperModel(MujocoXMLModel):
 
         # Grab gripper offset (string -> np.array -> elements [1, 2, 3, 0] (x, y, z, w))
         # This is the comopunded rotation with the base body and the eef body as well!
-        base_quat = np.fromstring(self.worldbody[0].attrib.get("quat", "1 0 0 0"), dtype=np.float64, sep=" ")[
+        base_quat = np.fromstring(self.worldbody[0].attrib.get("quat", "1 0 0 0"), dtype=np.float32, sep=" ")[
             [1, 2, 3, 0]
         ]
         eef_element = find_elements(

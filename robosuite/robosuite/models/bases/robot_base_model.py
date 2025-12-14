@@ -25,7 +25,7 @@ class RobotBaseModel(MujocoXMLModel):
 
         # Grab mount offset (string -> np.array -> elements [1, 2, 3, 0] (x, y, z, w))
         self.rotation_offset = np.fromstring(
-            self.worldbody[0].attrib.get("quat", "1 0 0 0"), dtype=np.float64, sep=" "
+            self.worldbody[0].attrib.get("quat", "1 0 0 0"), dtype=np.float32, sep=" "
         )[[1, 2, 3, 0]]
 
     # -------------------------------------------------------------------------------------- #

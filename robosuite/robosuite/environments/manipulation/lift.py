@@ -176,6 +176,7 @@ class Lift(ManipulationEnv):
         renderer="mjviewer",
         renderer_config=None,
         seed=None,
+        skill_config=None
     ):
         # settings for table top
         self.table_full_size = table_full_size
@@ -219,6 +220,7 @@ class Lift(ManipulationEnv):
             renderer=renderer,
             renderer_config=renderer_config,
             seed=seed,
+            skill_config=skill_config
         )
 
     def reward(self, action=None):
@@ -276,7 +278,8 @@ class Lift(ManipulationEnv):
         info = super()._get_env_info(action)
 
         cube_pos = self.sim.data.body_xpos[self.cube_body_id]
-        gripper_site_pos = self.sim.data.site_xpos[self.robots[0].eef_site_id]
+        gripper_site_pos = self.sim.data.site_xpos[self.robots[0].eef_site_id['right']] # TODO fix this
+
         dist = np.linalg.norm(gripper_site_pos - cube_pos)
         reaching_reward = 1 - np.tanh(10.0 * dist)
 

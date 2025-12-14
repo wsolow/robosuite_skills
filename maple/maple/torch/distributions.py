@@ -17,6 +17,7 @@ from collections import OrderedDict
 
 
 class Distribution(TorchDistribution):
+    arg_constraints = {}
     def sample_and_logprob(self):
         s = self.sample()
         log_p = self.log_prob(s)
@@ -647,7 +648,6 @@ class HybridDistribution(Distribution):
 class ConcatDistribution(HybridDistribution):
     def __init__(self, distr1, distr2, rev_order=False):
         super().__init__(rev_order=rev_order)
-
         self.distr1 = distr1
         self.distr2 = distr2
 
@@ -729,15 +729,14 @@ class ConcatDistribution(HybridDistribution):
 class DistributionList(Distribution):
     def __init__(self, distr1, distr2, rev_order=False):
         super().__init__(rev_order=rev_order)
-
         self.distr1 = distr1
         self.distr2 = distr2
 
 
 class HierarchicalDistribution(HybridDistribution):
     def __init__(self, distr1, distr2_cond_fn, rev_order=False):
+        arg_constraints = {}
         super().__init__(rev_order=rev_order)
-
         self.distr1 = distr1
         self.distr2_cond_fn = distr2_cond_fn
         self.distr2_tmp = None

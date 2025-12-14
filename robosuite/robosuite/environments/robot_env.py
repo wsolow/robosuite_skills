@@ -287,7 +287,6 @@ class RobotEnv(MujocoEnv):
             robot_dim = param_dim + skill_dim
             lo, hi = (-1 * np.ones(robot_dim), np.ones(robot_dim))
             low, high = np.concatenate([low, lo]), np.concatenate([high, hi])
-
         return low, high
 
     @property

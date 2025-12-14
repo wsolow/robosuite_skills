@@ -369,7 +369,7 @@ def euler2mat(euler):
         AssertionError: [Invalid input shape]
     """
 
-    euler = np.asarray(euler, dtype=np.float64)
+    euler = np.asarray(euler, dtype=np.float32)
     assert euler.shape[-1] == 3, "Invalid shaped euler {}".format(euler)
 
     ai, aj, ak = -euler[..., 2], -euler[..., 1], -euler[..., 0]
@@ -378,7 +378,7 @@ def euler2mat(euler):
     cc, cs = ci * ck, ci * sk
     sc, ss = si * ck, si * sk
 
-    mat = np.empty(euler.shape[:-1] + (3, 3), dtype=np.float64)
+    mat = np.empty(euler.shape[:-1] + (3, 3), dtype=np.float32)
     mat[..., 2, 2] = cj * ck
     mat[..., 2, 1] = sj * sc - cs
     mat[..., 2, 0] = sj * cc + ss

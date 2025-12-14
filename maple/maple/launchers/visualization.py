@@ -111,7 +111,7 @@ def dump_video(
         frames.append(l)
 
         if do_timer:
-            print(i, time.time() - start)
+            print(f"Video Time: {i}, {time.time() - start}")
 
     for i in range(len(frames)):
         last_img = frames[i][-1]

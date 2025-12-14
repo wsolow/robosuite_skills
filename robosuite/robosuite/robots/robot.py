@@ -21,7 +21,7 @@ from robosuite.utils.observables import Observable, sensor
 
 class Robot(object):
     """
-    Initializes a robot simulation object, as defined by a single corresponding robot XML
+    Initializes a robot simulation object, as defifned by a single corresponding robot XML
 
     Args:
         robot_type (str): Specification for specific robot arm to be instantiated within this env (e.g: "Panda")
