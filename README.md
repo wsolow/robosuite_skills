@@ -16,6 +16,7 @@ A repository based on the paper and code found here: https://github.com/UT-Austi
     ```pip install -r requirements.txt```
     ```pip install -r requirements-extra.txt```
     ```cd ..```
+    
     b. Install maple
     ```pip install -e maple```
 

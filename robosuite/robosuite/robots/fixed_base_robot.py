@@ -141,6 +141,7 @@ class FixedBaseRobot(Robot):
             self.action_dim, len(action)
         )
 
+
         self.composite_controller.update_state()
         if policy_step:
             self.composite_controller.set_goal(action)

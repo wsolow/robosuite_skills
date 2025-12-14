@@ -97,6 +97,8 @@ class GymWrapper(Wrapper, gym.Env):
             self.observation_space = spaces.Dict({key: get_box_space(obs[key]) for key in self.keys})
 
         low, high = self.env.action_spec
+        print(low, high)
+        print(type(self.env))
         self.action_space = spaces.Box(low, high)
 
     def _flatten_obs(self, obs_dict, verbose=False):
