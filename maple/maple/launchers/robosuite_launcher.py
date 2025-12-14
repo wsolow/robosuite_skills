@@ -4,12 +4,12 @@ from robosuite import load_part_controller_config
 
 import maple.torch.pytorch_util as ptu
 from maple.data_management.env_replay_buffer import EnvReplayBuffer
-from maple.samplers.data_collector import MdpPathCollector
+from maple.samplers.data_collector import MdpPathCollector, MdpStepCollector
 from maple.torch.sac.policies import TanhGaussianPolicy, PAMDPPolicy, MakeDeterministic
 from maple.torch.sac.sac import SACTrainer
 from maple.torch.sac.sac_hybrid import SACHybridTrainer
 from maple.torch.networks import ConcatMlp
-from maple.torch.torch_rl_algorithm import TorchBatchRLAlgorithm
+from maple.torch.torch_rl_algorithm import TorchBatchRLAlgorithm, TorchOnlineRLAlgorithm
 
 import numpy as np
 import torch
@@ -36,7 +36,7 @@ def experiment(variant):
             has_renderer=False,
             has_offscreen_renderer=True,
             use_camera_obs=False,
-            # controller_configs=controller_config, TODO: maybe consider passing this?
+            # controller_configs=controller_config, TODO(wsolow): maybe consider passing this?
             **env_variant["env_kwargs"]
         )
 
@@ -74,7 +74,7 @@ def experiment(variant):
 
     action_dim_s = getattr(expl_env, "action_skill_dim", 0)
     action_dim_p = action_dim - action_dim_s
-    action_dim_p = 7  # TODO check this
+    action_dim_p = 7  # TODO(wsolow) check this (avoid hard coding)
     if action_dim_s == 0:
         trainer_class = SACTrainer
         policy = TanhGaussianPolicy(
@@ -135,10 +135,10 @@ def experiment(variant):
 
     rollout_fn_kwargs = variant.get("rollout_fn_kwargs", {})
 
-    eval_path_collector = MdpPathCollector(
+    eval_path_collector = MdpPathCollector( #TODO(wsolow) MdpPathCollector
         eval_env,
         eval_policy,
-        save_env_in_snapshot=False,
+        save_env_in_snapshot=False, #TODO(wsolow) removed
         rollout_fn_kwargs=rollout_fn_kwargs,
     )
     expl_path_collector = MdpPathCollector(

@@ -99,7 +99,7 @@ class BaseSkill:
         robot_controller = self._config["robot_controller"]
         goal_ori = robot_controller.part_controllers["right"].get_global_euler_from_ori_ac(
             ori
-        )  # TODO fix this (make less specific to franka)
+        )  # TODO(wsolow) fix this (make less specific to franka)
         cur_ori = trans.mat2euler(robot_controller.part_controllers["right"].ref_ori_mat, axes="rxyz")
         ee_ori_diff = np.minimum((goal_ori - cur_ori) % (2 * np.pi), (cur_ori - goal_ori) % (2 * np.pi))
         if ee_ori_diff[-1] <= 0.20:
@@ -179,7 +179,7 @@ class AtomicSkill(BaseSkill):
         return None
 
     def _get_reach_pos(self, info):
-        return info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        return info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
 
 
 class GripperSkill(BaseSkill):
@@ -228,7 +228,7 @@ class GripperSkill(BaseSkill):
         return None
 
     def _get_reach_pos(self, info):
-        return info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        return info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
 
 
 class ReachOSCSkill(BaseSkill):
@@ -298,7 +298,7 @@ class ReachOSCSkill(BaseSkill):
 
     def is_success(self, info):
         pos, delta = self.get_pos_ac(info)
-        cur_pos = info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        cur_pos = info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
         th = self._config["reach_threshold"]
         return np.linalg.norm(pos - cur_pos) <= th
 
@@ -326,7 +326,7 @@ class ReachSkill(BaseSkill):
         return base_param_dim-3
 
     def update_state(self, info):
-        cur_pos = info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        cur_pos = info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
         goal_pos = self._get_reach_pos(info)
 
         th = self._config["reach_threshold"]
@@ -349,7 +349,7 @@ class ReachSkill(BaseSkill):
         assert self._state in ReachSkill.STATES
 
     def get_pos_ac(self, info):
-        cur_pos = info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        cur_pos = info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
         goal_pos = self._get_reach_pos(info)
 
         is_delta = False
@@ -431,7 +431,7 @@ class GraspSkill(BaseSkill):
         self._num_grasp_steps = 0
 
     def update_state(self, info):
-        cur_pos = info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        cur_pos = info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
         goal_pos = self._get_reach_pos(info)
 
         th = self._config["reach_threshold"]
@@ -458,7 +458,7 @@ class GraspSkill(BaseSkill):
         assert self._state in GraspSkill.STATES
 
     def get_pos_ac(self, info):
-        cur_pos = info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        cur_pos = info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
         goal_pos = self._get_reach_pos(info)
 
         is_delta = False
@@ -524,10 +524,10 @@ class PushSkill(BaseSkill):
         super().__init__(skill_type, max_ac_calls=max_ac_calls, use_ori_params=use_ori_params, **config)
 
     def get_param_dim(self, base_param_dim):
-        return base_param_dim # +3  TODO not quite sure why we needed this offset
+        return base_param_dim # +3  TODO(wsolow) not quite sure why we needed this offset
 
     def update_state(self, info):
-        cur_pos = info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        cur_pos = info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
         src_pos = self._get_reach_pos(info)
         target_pos = self._get_push_pos(info)
 
@@ -555,7 +555,7 @@ class PushSkill(BaseSkill):
         assert self._state in PushSkill.STATES
 
     def get_pos_ac(self, info):
-        cur_pos = info["cur_ee_pos"][0]  # TODO for multiple ee poses
+        cur_pos = info["cur_ee_pos"][0]  # TODO(wsolow) for multiple ee poses
         src_pos = self._get_reach_pos(info)
         target_pos = self._get_push_pos(info)
 

@@ -124,7 +124,7 @@ class SkillController:
             ]
         )
         gripper_control_dim = np.sum([robot.gripper[g].dof for g in robot.gripper.keys()])
-        # robot_control_dim = 6 #TODO: Fix how we get robot control dim
+        # robot_control_dim = 6 #TODO(wsolow): Fix how we get robot control dim
         robot_control_dim = 6  # I think this should be 6
         skill_config_update = dict(
             robot_controller_dim=robot_control_dim,

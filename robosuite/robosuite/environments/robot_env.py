@@ -608,7 +608,7 @@ class RobotEnv(MujocoEnv):
         return self._get_observations(), reward, done, info
 
     def _get_env_info(self, action):
-        # assert len(action) == self._action_dim TODO: do we need this?
+        # assert len(action) == self._action_dim TODO(wsolow): do we need this?
         info = {}
         return info
 

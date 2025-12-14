@@ -278,7 +278,7 @@ class Lift(ManipulationEnv):
         info = super()._get_env_info(action)
 
         cube_pos = self.sim.data.body_xpos[self.cube_body_id]
-        gripper_site_pos = self.sim.data.site_xpos[self.robots[0].eef_site_id['right']] # TODO fix this
+        gripper_site_pos = self.sim.data.site_xpos[self.robots[0].eef_site_id['right']] # TODO(wsolow) fix this so not specific to Franka
 
         dist = np.linalg.norm(gripper_site_pos - cube_pos)
         reaching_reward = 1 - np.tanh(10.0 * dist)
